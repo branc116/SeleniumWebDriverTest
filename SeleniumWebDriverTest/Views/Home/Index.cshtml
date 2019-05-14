@@ -6,3 +6,21 @@
     <h1 class="display-4">Welcome</h1>
     <p>Site that uses cookies for analitics, better user experiance and nothing more.</p>
 </div>
+
+<form asp-controller="Home" asp-action="ZseCheckIsTop10">
+    <input id="dd" name="dionicaName" type="text" placeholder="Dionicko drustvo" class="form-control m-3" />
+    <button id="sbmt" type="button" class="btn btn-primary m-3">Is top 10</button>
+    <p id="out" class="m-3"></p>
+</form>
+<script>
+    var btn = document.getElementById("sbmt");
+    var out = document.getElementById("out");
+    var dd = document.getElementById("dd");
+    btn.addEventListener("click", async () => {
+        out.innerHTML = "߷";
+        out.setAttribute("title", "Fidget spinner");
+        var r = await fetch("/home/ZseCheckIsTop10?dionicaName=" + dd.value);
+        out.setAttribute("title", "Nalazi li se " + dd.value + " u top 10 dioničkih društva?");
+        out.innerHTML = await r.text();
+    });
+</script>
